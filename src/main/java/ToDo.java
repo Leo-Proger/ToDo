@@ -1,3 +1,5 @@
+package main.java;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -18,7 +20,7 @@ public class ToDo {
     public void addTask(String text) {
         Task task = new Task(text, idGenerator.incrementAndGet());
         boolean isAdded = taskList.add(task);
-        System.out.println("Task added successfully!");
+        System.out.println("main.java.Task added successfully!");
     }
 
     public void deleteTask(String string) {
@@ -26,7 +28,7 @@ public class ToDo {
             String taskText = task.getText();
             if (taskText.contains(string.toLowerCase(Locale.ROOT))) {
                 taskList.remove(task);
-                System.out.println("Task \"" + taskText + "\" deleted.");
+                System.out.println("main.java.Task \"" + taskText + "\" deleted.");
                 return;
             }
         }
@@ -38,7 +40,7 @@ public class ToDo {
             String taskText = task.getText();
             if (taskText.contains(string.toLowerCase(Locale.ROOT))) {
                 task.setCompleted(true);
-                System.out.println("Task \"" + taskText + "\" marked as completed.");
+                System.out.println("main.java.Task \"" + taskText + "\" marked as completed.");
                 return;
             }
         }
@@ -50,7 +52,7 @@ public class ToDo {
             String taskText = task.getText();
             if (taskText.contains(string.toLowerCase(Locale.ROOT))) {
                 task.setCompleted(false);
-                System.out.println("Task \"" + taskText + "\" marked as uncompleted.");
+                System.out.println("main.java.Task \"" + taskText + "\" marked as uncompleted.");
                 return;
             }
         }

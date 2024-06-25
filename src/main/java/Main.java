@@ -1,3 +1,5 @@
+package main.java;
+
 import java.util.Scanner;
 
 public class Main {
@@ -19,7 +21,7 @@ public class Main {
         CommandHandler cmd = new CommandHandler(toDo);
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("---------- Welcome to ToDo ----------\n");
+        System.out.println("---------- Welcome to main.java.ToDo ----------\n");
         System.out.println(HELP_TEXT);
         while (true) {
             System.out.print(">>> ");

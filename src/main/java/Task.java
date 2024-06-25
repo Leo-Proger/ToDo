@@ -1,3 +1,5 @@
+package main.java;
+
 public class Task {
     private final int id;
     private String text;
