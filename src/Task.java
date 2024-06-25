@@ -31,6 +31,6 @@ public class Task {
 
     @Override
     public String toString() {
-        return isCompleted() ? "- (completed) " + getText() : "- " + getText();
+        return isCompleted() ? "+ " + getText() : "- " + getText();
     }
 }
