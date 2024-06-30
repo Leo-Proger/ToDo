@@ -12,16 +12,16 @@ public class CommandHandler {
 
         switch (command[0]) {
             case "add":
-                toDo.addTask(command[1]);
+                toDo.add(command[1]);
                 break;
             case "delete":
-                toDo.deleteTask(command[1]);
+                toDo.delete(command[1]);
                 break;
             case "complete":
-                toDo.markTaskAsCompleted(command[1]);
+                toDo.markAsCompleted(command[1]);
                 break;
             case "uncomplete":
-                toDo.markTaskAsUncompleted(command[1]);
+                toDo.markAsUncompleted(command[1]);
             case "list":
                 for (Task task : toDo.getAllTasks()) {
                     System.out.println(task);
@@ -29,6 +29,7 @@ public class CommandHandler {
                 break;
             case "help":
                 System.out.println(Main.HELP_TEXT);
+                break;
             default:
                 System.out.println("Unknown command.");
         }

@@ -5,9 +5,8 @@ public class Task {
     private String text;
     private boolean completed;
 
-    public Task(String text, int id) {
+    public Task(int id) {
         this.id = id;
-        this.text = text;
         this.completed = false;
     }
 
