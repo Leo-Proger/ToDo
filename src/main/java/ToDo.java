@@ -7,13 +7,12 @@ import com.google.gson.reflect.TypeToken;
 import java.io.*;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Locale;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class ToDo {
-    private final String errorMessage = "An error has occurred.";
     Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     private List<Task> taskList;
@@ -28,54 +27,48 @@ public class ToDo {
         if (!text.isEmpty()) {
             Task task = new Task(idGenerator.incrementAndGet());
             task.setText(text);
+            task.setDisplayId(taskList.size() + 1);
             taskList.add(task);
+
             saveToJson(Main.JSON_FILE);
         }
         System.out.println("Task added successfully!");
     }
 
-    public void delete(String string) {
-        if (string != null) {
-            for (Task task : taskList) {
-                String taskText = task.getText();
-                if (taskText.contains(string.toLowerCase(Locale.ROOT))) {
-                    taskList.remove(task);
-                    System.out.printf("Task \"%s\" deleted.\n", taskText);
-                    saveToJson(Main.JSON_FILE);
-                    return;
+    public void delete(int[] taskDisplayIds) {
+        Iterator<Task> iterator = taskList.iterator();
+
+        while (iterator.hasNext()) {
+            Task task = iterator.next();
+
+            for (int displayId : taskDisplayIds) {
+                if (task.getDisplayId() == displayId) {
+                    iterator.remove();
+                    System.out.printf("Task \"%s\" deleted.\n", task.getText());
+                    break;
                 }
             }
-            System.out.println(errorMessage);
         }
+        updateDisplayIds();
+        saveToJson(Main.JSON_FILE);
     }
 
-    public void markAsCompleted(String string) {
+    public void markAs(int[] taskDisplayIds, boolean isCompleted) {
         for (Task task : taskList) {
-            String taskText = task.getText();
-            if (taskText.contains(string.toLowerCase(Locale.ROOT))) {
-                task.setCompleted(true);
-                System.out.println("Task \"" + taskText + "\" marked as completed.");
-                return;
+            for (int displayId : taskDisplayIds) {
+                if (task.getDisplayId() == displayId) {
+                    task.setCompleted(isCompleted);
+                    System.out.printf("Task \"%s\" marked as %scompleted.\n", task.getText(), isCompleted ? "" : "un");
+                }
             }
         }
-        System.out.println(errorMessage);
-    }
-
-    public void markAsUncompleted(String string) {
-        for (Task task : taskList) {
-            String taskText = task.getText();
-            if (taskText.contains(string.toLowerCase(Locale.ROOT))) {
-                task.setCompleted(false);
-                System.out.println("Task \"" + taskText + "\" marked as uncompleted.");
-                return;
-            }
-        }
-        System.out.println(errorMessage);
+        saveToJson(Main.JSON_FILE);
     }
 
     public List<Task> getAllTasks() {
         return new ArrayList<>(taskList);
     }
+
 
     public void saveToJson(File file) {
         try (Writer writer = new FileWriter(file)) {
@@ -95,6 +88,13 @@ public class ToDo {
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    /* Обновляем нумерацию отображаемых задач */
+    private void updateDisplayIds() {
+        for (Task task : taskList) {
+            task.setDisplayId(taskList.indexOf(task) + 1);
         }
     }
 }

@@ -2,6 +2,7 @@ package main.java;
 
 public class Task {
     private final int id;
+    private int displayId;
     private String text;
     private boolean completed;
 
@@ -12,6 +13,14 @@ public class Task {
 
     public int getId() {
         return id;
+    }
+
+    public int getDisplayId() {
+        return displayId;
+    }
+
+    public void setDisplayId(int displayId) {
+        this.displayId = displayId;
     }
 
     public String getText() {
@@ -32,6 +41,6 @@ public class Task {
 
     @Override
     public String toString() {
-        return isCompleted() ? "+ " + getText() : "- " + getText();
+        return String.format("%d. [%s] %s", getDisplayId(),isCompleted() ? "x" : " ", getText());
     }
 }

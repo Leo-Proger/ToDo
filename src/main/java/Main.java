@@ -6,20 +6,19 @@ import java.util.Scanner;
 public class Main {
     public static final String HELP_TEXT = """
             Available commands:
-              add <task>        - Add a new task
-              delete <task>     - Delete a task matching unique part
-              complete <task>   - Mark matching task as completed
-              uncomplete <task> - Mark matching task as uncompleted
+              add <text>        - Add a new task
+              delete <number>     - Delete a task
+              complete <number>   - Mark task as completed
+              uncomplete <number> - Mark task as uncompleted
               list              - Show all tasks
               help              - Display this message
               exit              - Exit the program
-
-              Note: <part> can be a unique part of the task text.\s
-              If not unique, you'll be asked to provide a more specific text.
             """;
     static final File JSON_FILE = new File("src/main/resources/data.json");
 
     public static void main(String[] args) {
+        // TODO: Убрать из git data.json и зафиксировать только пустой файл
+        // TODO: Добавить сортировку (по дате, приоритету), редактирование, поиск задач
         ToDo toDo = new ToDo();
         CommandHandler cmd = new CommandHandler(toDo);
         Scanner scanner = new Scanner(System.in);
