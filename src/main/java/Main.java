@@ -6,13 +6,13 @@ import java.util.Scanner;
 public class Main {
     public static final String HELP_TEXT = """
             Available commands:
-              add <text>        - Add a new task
-              delete <number>     - Delete a task
-              complete <number>   - Mark task as completed
-              uncomplete <number> - Mark task as uncompleted
-              list              - Show all tasks
-              help              - Display this message
-              exit              - Exit the program
+              add <text>           - Add a new task
+              delete <numbers>     - Delete a task
+              complete <numbers>   - Mark task as completed
+              uncomplete <numbers> - Mark task as uncompleted
+              list                 - Show all tasks
+              help                 - Display this message
+              exit                 - Exit the program
             """;
     static final File JSON_FILE = new File("src/main/resources/data.json");
 

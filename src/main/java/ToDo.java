@@ -97,4 +97,15 @@ public class ToDo {
             task.setDisplayId(taskList.indexOf(task) + 1);
         }
     }
+
+    public void print() {
+        List<Task> tasks = getAllTasks();
+        if (!tasks.isEmpty()) {
+            for (Task task : tasks) {
+                System.out.println(task);
+            }
+        } else {
+            System.out.println("You don't have any task.");
+        }
+    }
 }
