@@ -6,10 +6,7 @@ import com.google.gson.reflect.TypeToken;
 
 import java.io.*;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class ToDo {
@@ -20,7 +17,14 @@ public class ToDo {
 
     public ToDo() {
         taskList = new LinkedList<>();
-        idGenerator = new AtomicInteger(0);
+        loadFromJson(Main.JSON_FILE);
+
+        idGenerator = new AtomicInteger(
+                taskList.stream()
+                        .mapToInt(Task::getId)
+                        .max()
+                        .orElse(0)
+        );
     }
 
     public void add(String text) {
