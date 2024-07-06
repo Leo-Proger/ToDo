@@ -57,6 +57,30 @@ public class ToDo {
         saveToJson(Main.JSON_FILE);
     }
 
+    public void edit(int taskDisplayId) {
+        Optional<Task> optionalTask = taskList.stream()
+                .filter(task -> task.getDisplayId() == taskDisplayId)
+                .findFirst();
+        if (optionalTask.isPresent()) {
+            Task task = optionalTask.get();
+
+            System.out.print("Current task text: ");
+            System.out.println(task.getText());
+
+            System.out.print("Enter a new task text >>> ");
+            String newTaskText = new Scanner(System.in).nextLine();
+
+            if (!newTaskText.trim().isEmpty()) {
+                task.setText(newTaskText);
+                System.out.println("Task text updated!");
+            } else {
+                System.out.println("No changes have been made.");
+            }
+        } else {
+            System.out.println("Task not found.");
+        }
+    }
+
     public void markAs(int[] taskDisplayIds, boolean isCompleted) {
         for (Task task : taskList) {
             for (int displayId : taskDisplayIds) {
@@ -72,7 +96,6 @@ public class ToDo {
     public List<Task> getAllTasks() {
         return new ArrayList<>(taskList);
     }
-
 
     public void saveToJson(File file) {
         try (Writer writer = new FileWriter(file)) {

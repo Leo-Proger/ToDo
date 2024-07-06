@@ -19,7 +19,6 @@ public class Main {
     public static void main(String[] args) {
         // TODO: Убрать из git data.json и зафиксировать только пустой файл
         // TODO: Добавить сортировку (по дате, приоритету), редактирование, поиск задач
-        // TODO: Добавить форматирование задач: из "ложиться спать.пораньше" в "Ложиться спать. Пораньше"
         ToDo toDo = new ToDo();
         CommandHandler cmd = new CommandHandler(toDo);
         Scanner scanner = new Scanner(System.in);

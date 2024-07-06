@@ -1,7 +1,6 @@
 package main.java;
 
 import java.util.Arrays;
-import java.util.List;
 
 public class CommandHandler {
     ToDo toDo;
@@ -21,6 +20,7 @@ public class CommandHandler {
                     subArr = command[1].split(" ");
                     toDo.delete(Arrays.stream(subArr).mapToInt(Integer::parseInt).toArray());
                 }
+                case Command.EDIT -> toDo.edit(Integer.parseInt(command[1]));
                 case Command.COMPLETE -> {
                     subArr = command[1].split(" ");
                     toDo.markAs(Arrays.stream(subArr).mapToInt(Integer::parseInt).toArray(), true);

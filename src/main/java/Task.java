@@ -1,5 +1,7 @@
 package main.java;
 
+import java.util.Objects;
+
 public class Task {
     private final int id;
     private int displayId;
@@ -41,6 +43,19 @@ public class Task {
 
     @Override
     public String toString() {
-        return String.format("%d. [%s] %s", getDisplayId(),isCompleted() ? "x" : " ", getText());
+        return String.format("%d. [%s] %s", getDisplayId(), isCompleted() ? "x" : " ", getText());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Task task = (Task) o;
+        return id == task.id && displayId == task.displayId && completed == task.completed && Objects.equals(text, task.text);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, displayId, text, completed);
     }
 }

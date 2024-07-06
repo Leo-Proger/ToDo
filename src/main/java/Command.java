@@ -3,6 +3,7 @@ package main.java;
 public enum Command {
     ADD("add"),
     DELETE("delete"),
+    EDIT("edit"),
     COMPLETE("complete"),
     UNCOMPLETE("uncomplete"),
     LIST("list"),
