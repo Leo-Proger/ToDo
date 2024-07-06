@@ -113,6 +113,16 @@ public class ToDo {
             if (taskList == null) {
                 taskList = new LinkedList<>();
             }
+        } catch (FileNotFoundException e) {
+            boolean isCreated = false;
+            try {
+                isCreated = file.createNewFile();
+            } catch (IOException ex) {
+                System.out.println("The file for storing records could not be created");
+            }
+            if (isCreated) {
+                taskList = new LinkedList<>();
+            }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
