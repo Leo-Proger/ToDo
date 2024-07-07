@@ -11,14 +11,15 @@ public class Main {
               delete <numbers>     - Delete a task
               complete <numbers>   - Mark task as completed
               uncomplete <numbers> - Mark task as uncompleted
+              search <text>        - Find tasks with a given text
               list                 - Show all tasks
               help                 - Display this message
               exit                 - Exit the program
             """;
     static final File JSON_FILE = new File("src/main/resources/data.json");
 
-    public static void main(String[] args) throws IOException {
-        // TODO: Добавить сортировку (по дате, приоритету), поиск задач
+    public static void main(String[] args) {
+        // TODO: Добавить сортировку (по дате, приоритету)
         // TODO: Добавить команду info, которая выдает информацию о задаче ((не)выполнена, дедлайн, дата создания, дата редактирования и тд)
         ToDo toDo = new ToDo();
         CommandHandler cmd = new CommandHandler(toDo);
