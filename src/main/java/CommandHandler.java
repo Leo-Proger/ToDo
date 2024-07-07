@@ -10,30 +10,33 @@ public class CommandHandler {
     }
 
     public void handle(String string) {
-        String[] command = string.trim().toLowerCase().split(" ", 2);
+        String[] args = string.trim().toLowerCase().split(" ", 2);
         String[] subArr;
 
         try {
-            switch (Command.getAsCommand(command[0])) {
-                case Command.ADD -> toDo.add(command[1]);
+            switch (Command.getAsCommand(args[0])) {
+                case Command.ADD -> toDo.add(args[1]);
                 case Command.DELETE -> {
-                    subArr = command[1].split(" ");
+                    subArr = args[1].split(" ");
                     toDo.delete(Arrays.stream(subArr).mapToInt(Integer::parseInt).toArray());
                 }
-                case Command.EDIT -> toDo.edit(Integer.parseInt(command[1]));
+                case Command.EDIT -> toDo.edit(Integer.parseInt(args[1]));
                 case Command.COMPLETE -> {
-                    subArr = command[1].split(" ");
+                    subArr = args[1].split(" ");
                     toDo.markAs(Arrays.stream(subArr).mapToInt(Integer::parseInt).toArray(), true);
                 }
                 case Command.UNCOMPLETE -> {
-                    subArr = command[1].split(" ");
+                    subArr = args[1].split(" ");
                     toDo.markAs(Arrays.stream(subArr).mapToInt(Integer::parseInt).toArray(), false);
                 }
+                case Command.SEARCH -> toDo.search(args[1]);
                 case Command.LIST -> toDo.print();
                 case Command.HELP -> System.out.println(Main.HELP_TEXT);
             }
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Error");
         }
     }
 }

@@ -6,6 +6,7 @@ public enum Command {
     EDIT("edit"),
     COMPLETE("complete"),
     UNCOMPLETE("uncomplete"),
+    SEARCH("search"),
     LIST("list"),
     HELP("help");
 

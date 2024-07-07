@@ -93,6 +93,14 @@ public class ToDo {
         saveToJson(Main.JSON_FILE);
     }
 
+    public void search(String string) {
+        for (Task task : getAllTasks()) {
+            if (task.getText().contains(string)) {
+                System.out.printf("%d. [%s] %s\n", task.getDisplayId(), task.isCompleted() ? "x" : " ", task.getText());
+            }
+        }
+    }
+
     public List<Task> getAllTasks() {
         return new ArrayList<>(taskList);
     }

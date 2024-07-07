@@ -18,8 +18,8 @@ public class Main {
     static final File JSON_FILE = new File("src/main/resources/data.json");
 
     public static void main(String[] args) throws IOException {
-        // TODO: Убрать из git data.json и зафиксировать только пустой файл
         // TODO: Добавить сортировку (по дате, приоритету), поиск задач
+        // TODO: Добавить команду info, которая выдает информацию о задаче ((не)выполнена, дедлайн, дата создания, дата редактирования и тд)
         ToDo toDo = new ToDo();
         CommandHandler cmd = new CommandHandler(toDo);
         Scanner scanner = new Scanner(System.in);
