@@ -106,33 +106,56 @@ public class ToDo {
     }
 
     public void saveToJson(File file) {
+        // Создать родительские директории, если они не существуют
+        if (file.getParentFile() != null) {
+            file.getParentFile().mkdirs();
+        }
+        // Создать файл, если он не существует
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                System.err.println("Error: " + e.getMessage());
+            }
+        }
+
+        // Запись данных в JSON
         try (Writer writer = new FileWriter(file)) {
             gson.toJson(taskList, writer);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.err.println("Error: " + e.getMessage());
         }
     }
 
     public void loadFromJson(File file) {
+        // Создать родительские директории, если они не существуют
+        if (file.getParentFile() != null) {
+            file.getParentFile().mkdirs();
+        }
+        // Создать файл, если он не существует
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+                taskList = new LinkedList<>();
+                return;
+            } catch (IOException e) {
+                System.err.println("Error: " + e.getMessage());
+                taskList = new LinkedList<>();
+                return;
+            }
+        }
+
         try (Reader reader = new FileReader(file)) {
             Type type = new TypeToken<LinkedList<Task>>() {
             }.getType();
             taskList = gson.fromJson(reader, type);
+
             if (taskList == null) {
                 taskList = new LinkedList<>();
             }
-        } catch (FileNotFoundException e) {
-            boolean isCreated = false;
-            try {
-                isCreated = file.createNewFile();
-            } catch (IOException ex) {
-                System.out.println("The file for storing records could not be created");
-            }
-            if (isCreated) {
-                taskList = new LinkedList<>();
-            }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.err.println("Error: " + e.getMessage());
+            taskList = new LinkedList<>();
         }
     }
 

@@ -21,6 +21,6 @@ public enum Command {
                 return value;
             }
         }
-        throw new IllegalArgumentException("Unknown command: " + text);
+        throw new IllegalArgumentException();
     }
 }

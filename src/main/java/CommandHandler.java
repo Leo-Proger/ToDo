@@ -33,10 +33,8 @@ public class CommandHandler {
                 case Command.LIST -> toDo.print();
                 case Command.HELP -> System.out.println(Main.HELP_TEXT);
             }
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("Error");
+        } catch (IllegalArgumentException | ArrayIndexOutOfBoundsException e) {
+            System.err.println("Error: " + e.getMessage());
         }
     }
 }
