@@ -1,51 +1,51 @@
 # To Do
 
-## Описание
-Простое приложение для управления вашими задачами. Разработано на базе консоли под управлением Java 22.
+## Description
+A simple application for managing your tasks. Developed as a console application using Java 22.
 
-## Возможности
-- Добавление новых задач
-- Удаление задач
-- Отметка задач как выполненных или невыполненных
-- Поиск задач по тексту
-- Автоматическое сохранение задач в JSON файл
+## Features
+- Adding new tasks
+- Deleting tasks
+- Marking tasks as completed or uncompleted
+- Searching tasks by text
+- Automatic saving of tasks to a json file
 
-## Установка
-1. Клонируйте репозиторий: `git clone https://github.com/Leo-Proger/ToDo.git`
-2. Перейдите в директорию проекта: `cd ToDo`
-3. Скомпилируйте программу: `javac -cp "lib/*;." -d out/production/ToDo src/main/java/*.java`
+## Installation
+1. Clone the repository: `git clone https://github.com/Leo-Proger/ToDo.git`
+2. Navigate to the project directory: `cd ToDo`
+3. Compile the program: `javac -cp "lib/*;." -d out/production/ToDo src/main/java/*.java`
 
-    _Примечание_: На Unix-подобных системах (Linux, macOS) используйте двоеточие вместо точки с запятой: `javac -cp "lib/*:." -d out/production/ToDo src/main/java/*.java`
-4. Запустите приложение: `java -cp "out/production/ToDo;lib/*" main.java.Main`
+    _Note_: On Unix-like systems (Linux, macOS), use a colon instead of a semicolon: `javac -cp "lib/*:." -d out/production/ToDo src/main/java/*.java`
+4. Run the application: `java -cp "out/production/ToDo;lib/*" main.java.Main`
 
-    _Примечание_: На Unix-подобных системах (Linux, macOS) используйте: `java -cp "out/production/ToDo:lib/*" main.java.Main`
+    _Note_: On Unix-like systems (Linux, macOS), use: `java -cp "out/production/ToDo:lib/*" main.java.Main`
 
-## Структура проекта
+## Project Structure
 ```
 ToDo
-├───lib                # Внешние библиотеки (включая Gson)
+├───lib                # External libraries (including Gson)
 ├───src
 │   └───main
-│       ├───java       # Исходный код Java
-│       └───resources  # Ресурсные файлы (.json)
+│       ├───java       # Java source code
+│       └───resources  # Resource files (.json)
 └───out
     └───production
-        └───ToDo       # Скомпилированные классы
+        └───ToDo       # Compiled classes
 ```
 
-## Зависимости
-Проект использует внешние библиотеки:
-- Gson - для работы с JSON (находится в директории lib/)
+## Dependencies
+The project uses external libraries:
+- Gson - for working with JSON (located in the lib/ directory)
 
-## Использование
-Управление приложение производится посредством команд:
+## Usage
+The application is controlled through commands:
 ```
-add <текст>           - Добавить новую задачу
-delete <номера>       - Удалить задачи с указанными номерами
-complete <номера>     - Отметить задачи с указанными номерами как выполненную
-uncomplete <номера>   - Отметить задачи с указанными номерами как невыполненную
-search <текст>        - Найти задачи по тексту
-list                  - Показать все задачи
-help                  - Вывести справку по командам
-exit                  - Выйти из программы
+add <text>            - Add a new task
+delete <numbers>      - Delete tasks with specified numbers
+complete <numbers>    - Mark tasks with specified numbers as completed
+uncomplete <numbers>  - Mark tasks with specified numbers as uncompleted
+search <text>         - Find tasks by text
+list                  - Show all tasks
+help                  - Display command help
+exit                  - Exit the program
 ```
