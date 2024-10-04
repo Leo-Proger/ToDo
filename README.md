@@ -1,4 +1,4 @@
-# To Do
+# ToDo
 
 ## Description
 A simple application for managing your tasks. Developed as a console application using Java 22.
